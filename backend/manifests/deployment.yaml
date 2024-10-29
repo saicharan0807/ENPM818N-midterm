@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: 390844769589.dkr.ecr.us-east-2.amazonaws.com/bookstore/backend
+          ports:
+          - containerPort: 5000
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: regcred
